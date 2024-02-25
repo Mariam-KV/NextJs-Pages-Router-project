@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MeetupList from "@/components/meetups/MeetupList";
+import { MongoClient } from "mongodb";
 const DUMMY_DATA = [
   {
     id: "m1",
@@ -28,9 +29,25 @@ export default function HomePage(props) {
   );
 }
 export async function getStaticProps() {
+  const client = await MongoClient.connect(
+    `mongodb+srv://marikanik1999:Hr1VRVqN6jXovg57@meetup.t9mwjet.mongodb.net/?retryWrites=true&w=majority&appName=Meetup`
+  );
+  const db = client.db();
+  const meetupsCollection = db.collection("meetups");
+  //inserting one new document into this collection.
+  const result = await meetupsCollection.find().toArray();
+  client.close();
   return {
     props: {
-      meetups: DUMMY_DATA,
+      meetups: result.map((meetup) => {
+        return {
+          id: meetup._id.toString(),
+          title: meetup.title,
+          image: meetup.image,
+          address: meetup.address,
+          description: meetup.description,
+        };
+      }),
     },
     // is the number of seconds NextJS will wait until it regenerates this pagefor an incoming request.
     revalidate: 10,

@@ -5,10 +5,9 @@ import { MongoClient } from "mongodb";
 export default async function handler(req, res) {
   // Find out which kind of request was sent.
   const method = req.method;
-  if (method === "POST") {
+  if (method === "GET") {
     // contains the body of the incoming request, the data of the incoming request.
     const data = req.body;
-  
     //code that defined inside api file will never run on the client
     const client = await MongoClient.connect(
       `mongodb+srv://marikanik1999:Hr1VRVqN6jXovg57@meetup.t9mwjet.mongodb.net/?retryWrites=true&w=majority&appName=Meetup`
