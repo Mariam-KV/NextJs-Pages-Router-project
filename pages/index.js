@@ -13,8 +13,7 @@ export default function HomePage(props) {
         <title>React Meetups</title>
         <meta name="description" content="Meetups" />
       </Head>
-      <h1>the home page</h1>
-      <Link href={"/news"}>Link to news page</Link>
+
       <MeetupList meetups={props.meetups} />
     </Fragment>
   );

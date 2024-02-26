@@ -1,21 +1,17 @@
 import classes from "./MeetupItem.module.css";
-export default function MeetUpDetails(props) {
+export default function MeetUpDetails({ image, title, description, address }) {
   return (
     <div>
-      <title>4444444</title>
-      <meta name="description" content={44} />
+      <title>{title}</title>
+      <meta name="description" content={description} />
 
       <div className={classes.image}>
-        <img
-          src={
-       ""
-          }
-          alt={4}
-        />
+        <img src={image} alt={title} />
       </div>
       <div className={classes.content}>
-        <h3>rgfnvb</h3>
-        <address>rgthyj</address>
+        <h3>{title}</h3>
+        <address>{address}</address>
+        <p>{description}</p>
       </div>
     </div>
   );

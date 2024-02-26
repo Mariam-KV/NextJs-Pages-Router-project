@@ -1,8 +1,6 @@
-import { useRouter } from "next/router";
 import { MongoClient, ObjectId } from "mongodb";
 import MeetUpDetails from "@/components/meetups/MeetUpDetails";
 export default function MeetupId(props) {
-
   return (
     <div>
       <MeetUpDetails
@@ -52,7 +50,6 @@ export async function getStaticProps(context) {
   const { title, image, address, description, _id } =
     await meetupsCollection.findOne({ _id: new ObjectId(id) });
   client.close();
-
   return {
     props: {
       details: {
